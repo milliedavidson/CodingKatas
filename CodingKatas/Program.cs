@@ -1,6 +1,4 @@
-﻿using CodingKatas.UserStory1;
-
-namespace CodingKatas
+﻿namespace CodingKatas
 {
     internal class Program
     {
