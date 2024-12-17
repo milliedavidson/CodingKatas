@@ -1,6 +1,6 @@
-﻿using Xunit;
+﻿using Xunit; // TODO: see what we have installed
 
-namespace CodingKatasTest.UserStory1
+namespace CodingKatasTest
 {
     public class ReadFileTests
     {

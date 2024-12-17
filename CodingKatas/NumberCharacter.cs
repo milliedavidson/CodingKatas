@@ -1,6 +1,6 @@
-﻿namespace CodingKatas.UserStory1
+﻿namespace CodingKatas
 {
-    public class MapBlocks
+    public class NumberCharacter
     {
         private static readonly Dictionary<string, char> Grid = new Dictionary<string, char>
         {
@@ -16,17 +16,17 @@
             { " _ |_| _|   ", '9' }
         };
 
-        public string MapBlocksToCharacters(NumberBlock numberBlock)
-        {
-            var accountNumber = new char[9];
-            var blocks = numberBlock.GetBlocks();
+        public string CharacterString { get; }
+        public char MappedCharacter => Grid.ContainsKey(CharacterString) ? Grid[CharacterString] : '?';
 
-            for (int i = 0; i < blocks.Count; i++)
+        public NumberCharacter(string characterString)
+        {
+            if (characterString.Length != 12)
             {
-                accountNumber[i] = Grid.ContainsKey(blocks[i]) ? Grid[blocks[i]] : '?';
+                throw new ArgumentException("The character block should have 12 characters.");
             }
 
-            return new string(accountNumber);
+            CharacterString = characterString;
         }
     }
 }

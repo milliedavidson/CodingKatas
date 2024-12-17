@@ -1,4 +1,4 @@
-﻿namespace CodingKatasTest.UserStory1
+﻿namespace CodingKatasTest
 {
     public class ParseFileEntryTests
     {

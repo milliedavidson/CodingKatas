@@ -1,4 +1,4 @@
-﻿namespace CodingKatas.UserStory1
+﻿namespace CodingKatas
 {
     public class ParseFileEntry
     {
@@ -21,4 +21,3 @@
         }
     }
 }
- 
