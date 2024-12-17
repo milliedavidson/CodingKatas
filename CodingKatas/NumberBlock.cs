@@ -2,7 +2,7 @@
 {
     public class NumberBlock
     {
-        public List<NumberCharacter> NumberCharacters { get; }
+        private readonly List<string> _lines;
 
         public NumberBlock(List<string> lines)
         {
@@ -11,30 +11,37 @@
                 throw new ArgumentException("The number block must have 4 lines.");
             }
 
-            NumberCharacters = new List<NumberCharacter>();
+            _lines = lines;
+        }
+
+        public List<NumberCharacter> GetNumberCharacters() // TODO: check tests
+        {
+            var numberCharacters = new List<NumberCharacter>();
 
             for (var i = 0; i < 9; i++)
             {
                 var block =
-                    lines[0].Substring(i * 3, 3) +
-                    lines[1].Substring(i * 3, 3) +
-                    lines[2].Substring(i * 3, 3) +
-                    lines[3].Substring(i * 3, 3);
-                
-                NumberCharacters.Add(new NumberCharacter(block));
+                    _lines[0].Substring(i * 3, 3) +
+                    _lines[1].Substring(i * 3, 3) +
+                    _lines[2].Substring(i * 3, 3) +
+                    _lines[3].Substring(i * 3, 3);
+
+                numberCharacters.Add(new NumberCharacter(block));
             }
+
+            return numberCharacters;
         }
 
         public string GetAccountNumber()
         {
-            var accountNumber = new char[9];
+            var accountNumber = string.Empty;
 
-            for (var i = 0; i < NumberCharacters.Count; i++)
+            foreach (var numberCharacter in GetNumberCharacters())
             {
-                accountNumber[i] = NumberCharacters[i].MappedCharacter;
+                accountNumber += numberCharacter.MappedCharacter;
             }
 
-            return new string(accountNumber);
+            return accountNumber;
         }
 
         public bool ValidAccountNumber()

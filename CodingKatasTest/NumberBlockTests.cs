@@ -31,7 +31,7 @@ namespace CodingKatasTest
 
             var numberBlock = new NumberBlock(lines); // TODO: put this at top of file - gets reused a lot
 
-            Assert.Equal(4, numberBlock.NumberCharacters.Count);
+            Assert.Equal(4, numberBlock.GetNumberCharacters().Count);
         }
 
         [Fact]

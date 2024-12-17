@@ -4,17 +4,16 @@
     {
         private static void Main(string[] args)
         {
+            var filePath = args[0];
+
             if (args.Length != 1)
             {
-                Console.WriteLine("Usage: "); // TODO: add file path here
+                Console.WriteLine(filePath);
 
                 return;
             }
 
-            var filePath = args[0];
-            var readFile = new ReadFile();
             var parseFileEntry = new ParseFileEntry();
-            var mapBlocks = new MapBlocks();
 
             try
             {
@@ -23,9 +22,14 @@
 
                 foreach (var numberBlock in numberBlocks)
                 {
-                    var accountNumber = mapBlocks.MapBlocksToCharacters(numberBlock);
+                    try
+                    {
+                        var accountNumber = numberBlock.GetAccountNumber();
 
-                    Console.WriteLine(accountNumber);
+                        Console.WriteLine(accountNumber);
+                    }
+
+                    catch { }
                 }
             }
 
