@@ -1,4 +1,5 @@
-﻿using Xunit; // TODO: see what we have installed
+﻿using Xunit;
+using CodingKatas;
 
 namespace CodingKatasTest
 {
@@ -8,14 +9,14 @@ namespace CodingKatasTest
         public void File_Not_Found_Throws_File_Not_Found_Exception()
         {
             var readFile = new ReadFile();
-            readFile.ReadFileLines("");
+            ReadFile.ReadFileLines("");
         }
 
         [Fact]
         public void Incorrect_File_Format_Throws_Invalid_Operation_Exception()
         {
             var readFile = new ReadFile();
-            readFile.ReadFileLines(
+            ReadFile.ReadFileLines(
                 "Line 0 n/" +
                 "Line 1 n/" +
                 "Line 2 n/" +

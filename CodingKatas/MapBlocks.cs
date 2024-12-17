@@ -5,11 +5,11 @@
         public string MapBlocksToCharacters(NumberBlock numberBlock)
         {
             var accountNumber = new char[9];
-            var blocks = numberBlock.GetBlocks();
+            var numberCharacters = numberBlock.NumberCharacters;
 
-            for (int i = 0; i < blocks.Count; i++)
+            for (int i = 0; i < numberCharacters.Count; i++)
             {
-                accountNumber[i] = Grid.ContainsKey(blocks[i]) ? Grid[blocks[i]] : '?';
+                accountNumber[i] = numberCharacters[i].MappedCharacter;
             }
 
             return new string(accountNumber);

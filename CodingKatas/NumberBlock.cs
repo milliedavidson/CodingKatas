@@ -48,7 +48,7 @@
                 checksum += (accountNumber.Length - i) * (accountNumber[i] - '0');
             }
 
-            return checksum == 0;
+            return checksum % 11 == 0;
         }
     }
 }

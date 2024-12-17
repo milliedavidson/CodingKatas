@@ -2,6 +2,8 @@
 {
     public class ParseFileEntry
     {
+        private const int LinesPerBlock = 4;
+
         public List<NumberBlock> ParseFileEntryToBlocks(string[] lines)
         {
             var numberBlocks = new List<NumberBlock>();
@@ -10,11 +12,11 @@
 
             while (currentLine < numberOfLines)
             {
-                var nextFourLines = lines.Skip(currentLine).Take(4);
+                var nextFourLines = lines.Skip(currentLine).Take(LinesPerBlock);
                 var newNumberBlock = new NumberBlock(nextFourLines.ToList());
 
                 numberBlocks.Add(newNumberBlock);
-                currentLine += 4; // TODO: create constant
+                currentLine += LinesPerBlock;
             }
 
             return numberBlocks;

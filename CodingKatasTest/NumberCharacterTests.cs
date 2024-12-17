@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using CodingKatas;
+using Xunit;
 
 namespace CodingKatasTest
 {

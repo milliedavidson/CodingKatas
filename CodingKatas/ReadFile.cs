@@ -2,7 +2,7 @@
 {
     public class ReadFile
     {
-        public string[] ReadFileLines(string filePath)
+        public static string[] ReadFileLines(string filePath)
         {
             if (!File.Exists(filePath))
             {

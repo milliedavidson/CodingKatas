@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Using Include="NUnit.Framework" />
+    <ProjectReference Include="..\CodingKatas\CodingKatas.csproj" />
   </ItemGroup>
 
 </Project>
