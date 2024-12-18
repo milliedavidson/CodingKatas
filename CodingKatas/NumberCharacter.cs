@@ -23,7 +23,12 @@
         {
             if (characterString.Length != 12)
             {
-                throw new ArgumentException("The character block should have 12 characters.");
+                CharacterString = new string(' ', 12);
+            }
+
+            else
+            {
+                CharacterString = characterString;
             }
 
             CharacterString = characterString;

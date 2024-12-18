@@ -4,7 +4,7 @@
     {
         private readonly List<string> _lines;
 
-        const int RequiredNumberOfLines = 4;
+        private const int RequiredNumberOfLines = 4;
 
         public NumberBlock(List<string> lines)
         {
@@ -34,7 +34,7 @@
             return numberCharacters;
         }
 
-        public AccountNumberResult GetAccountNumberResult() // TODO: this can be the account number object with checksum etc. Test this method
+        public AccountNumberResult GetAccountNumberResult()
         {
             var accountNumber = string.Empty;
 
@@ -45,21 +45,5 @@
 
             return new AccountNumberResult(accountNumber);
         }
-
-        public bool ValidAccountNumber() // TODO: make private call internally
-        {
-            var accountNumberResult = GetAccountNumberResult();
-            var accountNumber = accountNumberResult.Number;
-            var checksum = 0;
-
-            for (var i = 0; i < accountNumber.Length; i++)
-            {
-                checksum += (accountNumber.Length - i) * (accountNumber[i] - '0');
-            }
-
-            return checksum % 11 == 0;
-        }
-
-
     }
 }

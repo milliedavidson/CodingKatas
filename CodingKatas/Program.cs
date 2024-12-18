@@ -6,36 +6,46 @@
         {
             var filePath = args[0];
 
-            if (args.Length != 1)
+            if (args.Length != 2)
             {
                 Console.WriteLine(filePath);
 
                 return;
             }
 
+            var inputFilePath = args[0];
+            var outputFilePath = args[1];
+            var readFile = new ReadFile();
             var parseFileEntry = new ParseFileEntry();
 
             try
             {
-                var lines = ReadFile.ReadFileLines(filePath);
+                var lines = ReadFile.ReadFileLines(inputFilePath);
                 var numberBlocks = parseFileEntry.ParseFileEntryToBlocks(lines);
+                var results = new List<string>();
 
                 foreach (var numberBlock in numberBlocks)
                 {
                     try
                     {
-                        var accountNumber = numberBlock.GetAccountNumberResult();
+                        var accountNumberResult = numberBlock.GetAccountNumberResult();
+                        results.Add(accountNumberResult.ToString());
 
-                        Console.WriteLine(accountNumber);
+                        File.WriteAllLines(outputFilePath, results);
+
+                        Console.WriteLine($@"Results shown here: {outputFilePath}");
                     }
 
-                    catch { } // TODO: tidy up
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($@"Error: {ex.Message}");
+                    }
                 }
             }
 
             catch (Exception ex)
             {
-                Console.WriteLine($"{ex.Message}");
+                Console.WriteLine($@"{ex.Message}");
             }
         }
     }

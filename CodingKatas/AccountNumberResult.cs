@@ -3,7 +3,6 @@
     public class AccountNumberResult
     {
         public string Number { get; } 
-        public int Length { get; set;} // TODO: Create an interface?
         public bool ChecksumIsValid => CalculateChecksum() == 0;
         public bool NumberBlockIsIllegible => Number.Contains('?');
         public string Status => NumberBlockIsIllegible ? "ILL" : (!ChecksumIsValid ? "ERR" : string.Empty);
