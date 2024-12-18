@@ -29,7 +29,7 @@
                         Console.WriteLine(accountNumber);
                     }
 
-                    catch { }
+                    catch { } // TODO: tidy up
                 }
             }
 

@@ -160,3 +160,59 @@ for a given number, and identifies if it is a valid account number.
 
 ---
 
+## User Story 3
+
+Your boss is keen to see your results. He asks you to write out a file
+of your findings, one for each input file, in this format:
+
+457508000
+664371495 ERR
+86110??36 ILL
+
+ie the file has one account number per row. If some characters are 
+illegible, they are replaced by a ?. In the case of a wrong checksum,
+or illegible number, this is noted in a second column indicating status.
+
+Now, we have provided you some example data and expected output. However,
+we haven't provided you with the input file that will generate the 
+expected output. So first, using code you will need to generate the input 
+file. When you have this you can then generate the expected output and 
+verify.
+
+---
+
+### Example of illegible numbers
+
+```
+    _  _  _  _  _  _     _ 
+|_||_|| || ||_   |  |  | _ 
+  | _||_||_||_|  |  |  | _|
+                           
+=> 49006771? ILL
+    _  _     _  _  _  _  _ 
+  | _| _||_| _ |_   ||_||_|
+  ||_  _|  | _||_|  ||_| _ 
+                           
+=> 1234?678? ILL
+```
+
+---
+
+### Expected output
+
+```
+123456789
+345882865
+457508000
+664371495 ERR
+86110??36 ILL
+987654321 ERR
+000000051
+123456788 ERR
+49006771? ILL
+1234?678? ILL
+```
+
+---
+
+

@@ -32,7 +32,7 @@
             return numberCharacters;
         }
 
-        public string GetAccountNumber()
+        public string GetAccountNumber() // TODO: this can be the account number object with checksum etc. Test this method
         {
             var accountNumber = string.Empty;
 
@@ -44,7 +44,7 @@
             return accountNumber;
         }
 
-        public bool ValidAccountNumber()
+        public bool ValidAccountNumber() // TODO: make private call internally
         {
             var accountNumber = GetAccountNumber();
 
@@ -57,5 +57,7 @@
 
             return checksum % 11 == 0;
         }
+
+
     }
 }
