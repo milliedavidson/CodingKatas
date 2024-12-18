@@ -5,7 +5,7 @@
         public string Number { get; } 
         public bool ChecksumIsValid => CalculateChecksum() == 0;
         public bool NumberBlockIsIllegible => Number.Contains('?');
-        public string Status => NumberBlockIsIllegible ? "ILL" : (!ChecksumIsValid ? "ERR" : string.Empty);
+        public string Status => NumberBlockIsIllegible ? "ILL" : (!ChecksumIsValid ? "ERR" : string.Empty); // TODO: enum for status (switch statement?)
 
         public AccountNumberResult(string number)
         {
@@ -19,14 +19,9 @@
 
         private int CalculateChecksum()
         {
-            var checksum = 0;
-
-            for (var i = 0; i < Number.Length; i++)
-            {
-                checksum += (Number.Length - i) * (Number[i] - '0');
-            }
-
-            return checksum % 11;
+            return Number
+                .Select((t, i) => (Number.Length - i) * int.Parse(t.ToString()))
+                .Sum() % 11;
         }
 
         public override string ToString()

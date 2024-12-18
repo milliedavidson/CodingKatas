@@ -16,7 +16,7 @@
             _lines = lines;
         }
 
-        public List<NumberCharacter> GetNumberCharacters() // TODO: check tests
+        public List<NumberCharacter> GetNumberCharacters()
         {
             var numberCharacters = new List<NumberCharacter>();
 
