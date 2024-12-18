@@ -24,7 +24,7 @@
                 {
                     try
                     {
-                        var accountNumber = numberBlock.GetAccountNumber();
+                        var accountNumber = numberBlock.GetAccountNumberResult();
 
                         Console.WriteLine(accountNumber);
                     }

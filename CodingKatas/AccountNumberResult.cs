@@ -2,7 +2,8 @@
 {
     public class AccountNumberResult
     {
-        public string Number { get; }
+        public string Number { get; } 
+        public int Length { get; set;} // TODO: Create an interface?
         public bool ChecksumIsValid => CalculateChecksum() == 0;
         public bool NumberBlockIsIllegible => Number.Contains('?');
         public string Status => NumberBlockIsIllegible ? "ILL" : (!ChecksumIsValid ? "ERR" : string.Empty);
@@ -21,7 +22,7 @@
         {
             var checksum = 0;
 
-            for (int i = 0; i < Number.Length; i++)
+            for (var i = 0; i < Number.Length; i++)
             {
                 checksum += (Number.Length - i) * (Number[i] - '0');
             }
