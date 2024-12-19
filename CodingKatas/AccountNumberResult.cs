@@ -5,7 +5,7 @@
         public string Number { get; } 
         public bool ChecksumIsValid => CalculateChecksum() == 0;
         public bool NumberBlockIsIllegible => Number.Contains('?');
-        public string Status => DecideNumberBlockStatus();
+        public StatusEnum Status => DecideNumberBlockStatus();
 
         public AccountNumberResult(string number)
         {
@@ -20,24 +20,24 @@
         private int CalculateChecksum()
         {
             return Number
-                .Select((t, i) => (Number.Length - i) * int.Parse(t.ToString()))
+                .Select((c, i) => (Number.Length - i) * int.Parse(c.ToString()))
                 .Sum() % 11;
         }
 
-        public string DecideNumberBlockStatus()
+        public StatusEnum DecideNumberBlockStatus()
         {
             var possibleNumber = GeneratePossibleNumberCorrection();
             var validNumber = possibleNumber.Where(n => new AccountNumberResult(n).ChecksumIsValid).ToList();
 
             return (NumberBlockIsIllegible, ChecksumIsValid, validNumber.Count) switch
             {
-                (true, _, 1) => string.Empty,
-                (true, _, > 1) => $"AMB [{string.Join(", ", validNumber)}]",
-                (true, _, 0) => "ILL",
-                (false, false, 1) => string.Empty,
-                (false, false, > 1) => $"AMB [{string.Join(", ", validNumber)}]",
-                (false, false, 0) => "ERR",
-                _ => string.Empty
+                (true, _, 1) => StatusEnum.Valid,
+                (true, _, > 1) => StatusEnum.AMB,
+                (true, _, 0) => StatusEnum.ILL,
+                (false, false, 1) => StatusEnum.Valid,
+                (false, false, > 1) => StatusEnum.AMB,
+                (false, false, 0) => StatusEnum.ERR,
+                _ => StatusEnum.Valid
             };
         }
 
@@ -59,7 +59,10 @@
                 else
                 {
                     var originalCharacter = Number[i];
-                    var possibleCharacters = new List<char> { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+                    var possibleCharacters = new List<char>
+                    {
+                        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+                    };
 
                     possibleCharacters.Remove(originalCharacter);
 
@@ -73,7 +76,15 @@
 
         public override string ToString()
         {
-            return string.IsNullOrEmpty(Status) ? Number : $"{Number} {Status}";
+            return Status switch
+            {
+                StatusEnum.Valid => Number,
+                StatusEnum.AMB => $"{Number} AMB [{string.Join(", ", GeneratePossibleNumberCorrection().Where(n => 
+                    new AccountNumberResult(n).ChecksumIsValid))}]",
+                StatusEnum.ILL => $"{Number} ILL",
+                StatusEnum.ERR => $"{Number} ERR",
+                _ => Number
+            };
         }
     }
 }

@@ -72,7 +72,7 @@ namespace CodingKatasTest
 
             var accountNumberResult = new AccountNumberResult(illegibleNumber);
 
-            Assert.Equal("ILL", accountNumberResult.Status);
+            Assert.Equal(StatusEnum.ILL, accountNumberResult.Status);
         }
 
     }
