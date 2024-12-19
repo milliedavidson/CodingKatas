@@ -15,7 +15,13 @@
 
             var inputFilePath = args[0];
             var outputFilePath = args[1];
-            var readFile = new ReadFile();
+
+            if (!File.Exists(inputFilePath))
+            {
+                GenerateInputFile.CreateInputFile(inputFilePath);
+                Console.WriteLine($@"Input file created here: {inputFilePath}");
+            }
+
             var parseFileEntry = new ParseFileEntry();
 
             try
@@ -30,10 +36,6 @@
                     {
                         var accountNumberResult = numberBlock.GetAccountNumberResult();
                         results.Add(accountNumberResult.ToString());
-
-                        File.WriteAllLines(outputFilePath, results);
-
-                        Console.WriteLine($@"Results shown here: {outputFilePath}");
                     }
 
                     catch (Exception ex)
@@ -41,6 +43,9 @@
                         Console.WriteLine($@"Error: {ex.Message}");
                     }
                 }
+
+                File.WriteAllLines(outputFilePath, results);
+                Console.WriteLine($@"Results file created here: {outputFilePath}");
             }
 
             catch (Exception ex)
