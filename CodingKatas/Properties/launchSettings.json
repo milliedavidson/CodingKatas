@@ -2,7 +2,7 @@
   "profiles": {
     "CodingKatas": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\Sample file.txt\""
+      "commandLineArgs": "\"C:\\Repos\\Samplefile.txt\""
     }
   }
 }

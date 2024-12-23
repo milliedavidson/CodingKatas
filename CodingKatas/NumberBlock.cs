@@ -34,16 +34,12 @@
             return numberCharacters;
         }
 
-        public AccountNumberResult GetAccountNumberResult()
+        // TODO: these methods are in the wrong class
+
+        public string GetAccountNumber()
         {
-            var accountNumber = string.Empty;
-
-            foreach (var numberCharacter in GetNumberCharacters())
-            {
-                accountNumber += numberCharacter.MappedCharacter;
-            }
-
-            return new AccountNumberResult(accountNumber);
+            return GetNumberCharacters().Aggregate(string.Empty,
+                (current, numberCharacter) => current + numberCharacter.MappedCharacter);
         }
     }
 }

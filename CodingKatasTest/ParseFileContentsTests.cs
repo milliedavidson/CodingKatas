@@ -1,6 +1,6 @@
 ﻿namespace CodingKatasTest
 {
-    public class ParseFileEntryTests
+    public class ParseFileContentsTests
     {
     }
 }

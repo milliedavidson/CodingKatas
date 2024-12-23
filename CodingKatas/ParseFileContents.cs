@@ -1,10 +1,10 @@
 ﻿namespace CodingKatas
 {
-    public class ParseFileEntry
+    public class ParseFileContents
     {
         private const int LinesPerBlock = 4;
 
-        public List<NumberBlock> ParseFileEntryToBlocks(string[] lines)
+        public List<NumberBlock> ParseFileContentsToBlocks(string[] lines)
         {
             var numberBlocks = new List<NumberBlock>();
             var numberOfLines = lines.Length;

@@ -6,7 +6,7 @@
         {
             var filePath = args[0];
 
-            if (args.Length != 2)
+            if (args.Length != 1)
             {
                 Console.WriteLine(filePath);
 
@@ -14,7 +14,6 @@
             }
 
             var inputFilePath = args[0];
-            var outputFilePath = args[1];
 
             if (!File.Exists(inputFilePath))
             {
@@ -22,19 +21,21 @@
                 Console.WriteLine($@"Input file created here: {inputFilePath}");
             }
 
-            var parseFileEntry = new ParseFileEntry();
+            var parseFileContents = new ParseFileContents();
 
             try
             {
-                var lines = ReadFile.ReadFileLines(inputFilePath);
-                var numberBlocks = parseFileEntry.ParseFileEntryToBlocks(lines);
+                var lines = ReadFileContents.ReadFileLines(inputFilePath);
+                var numberBlocks = parseFileContents.ParseFileContentsToBlocks(lines);
                 var results = new List<string>();
 
                 foreach (var numberBlock in numberBlocks)
                 {
                     try
                     {
-                        var accountNumberResult = numberBlock.GetAccountNumberResult();
+                        var accountNumber = numberBlock.GetAccountNumber();
+                        var accountNumberResult = new AccountNumber(accountNumber);
+
                         results.Add(accountNumberResult.ToString());
                     }
 
@@ -44,8 +45,10 @@
                     }
                 }
 
-                File.WriteAllLines(outputFilePath, results);
-                Console.WriteLine($@"Results file created here: {outputFilePath}");
+                foreach (var result in results)
+                {
+                    Console.WriteLine(result);
+                }
             }
 
             catch (Exception ex)

@@ -9,6 +9,13 @@
                 "123456789",
                 "345882865",
                 "457508000",
+                "664371495",
+                "987654321",
+                "123456788",
+                "49006771?",
+                "86110??36",
+                "000000051",
+                "1234?678?"
             };
 
             var lines = new List<string>();
@@ -24,7 +31,7 @@
 
         private static List<string> ConvertToOcrFormat(string accountNumber)
         {
-            var ocrLines = new string[4] { "", "", "", "" };
+            var ocrLines = new[] { "", "", "", "" };
 
             var ocrDigits = new Dictionary<char, string[]>
             {

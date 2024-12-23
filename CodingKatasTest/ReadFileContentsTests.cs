@@ -3,20 +3,21 @@ using CodingKatas;
 
 namespace CodingKatasTest
 {
-    public class ReadFileTests
+    public class ReadFileContentsTests
     {
         [Fact]
         public void File_Not_Found_Throws_File_Not_Found_Exception()
         {
-            var readFile = new ReadFile();
-            ReadFile.ReadFileLines("");
+            var readFile = new ReadFileContents();
+            ReadFileContents.ReadFileLines("");
         }
 
         [Fact]
         public void Incorrect_File_Format_Throws_Invalid_Operation_Exception()
         {
-            var readFile = new ReadFile();
-            ReadFile.ReadFileLines(
+            var readFileContents = new ReadFileContents(); // TODO: Finish
+
+            ReadFileContents.ReadFileLines(
                 "Line 0 n/" +
                 "Line 1 n/" +
                 "Line 2 n/" +

@@ -46,9 +46,9 @@ namespace CodingKatasTest
             };
 
             var numberBlock = new NumberBlock(lines);
-            var accountNumberResult = numberBlock.GetAccountNumberResult();
+            var accountNumber= numberBlock.GetAccountNumber();
 
-            Assert.Equal("123456789", accountNumberResult.Number);
+            Assert.Equal("123456789", accountNumber);
         }
 
         [Fact]
@@ -63,9 +63,9 @@ namespace CodingKatasTest
             };
 
             var numberBlock = new NumberBlock(lines);
-            var accountNumberResult = numberBlock.GetAccountNumberResult();
+            var accountNumber = numberBlock.GetAccountNumber();
 
-            Assert.True(accountNumberResult.ChecksumIsValid);
+            Assert.True(accountNumber);
         }
 
         [Fact]
@@ -80,9 +80,9 @@ namespace CodingKatasTest
             };
 
             var numberBlock = new NumberBlock(lines);
-            var accountNumberResult = numberBlock.GetAccountNumberResult();
+            var accountNumber = numberBlock.GetAccountNumber();
 
-            Assert.False(accountNumberResult.ChecksumIsValid);
+            Assert.False(accountNumber);
         }
     }
 }

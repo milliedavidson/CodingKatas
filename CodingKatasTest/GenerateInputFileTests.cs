@@ -1,6 +1,6 @@
 ﻿namespace CodingKatasTest
 {
-    internal class GenerateInputFileTests
+    public class GenerateInputFileTests
     {
     }
 }

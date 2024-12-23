@@ -1,13 +1,14 @@
 ﻿namespace CodingKatas
 {
-    public class AccountNumberResult
+    public class AccountNumber
     {
+        // TODO: Make into private sets
         public string Number { get; } 
-        public bool ChecksumIsValid => CalculateChecksum() == 0;
-        public bool NumberBlockIsIllegible => Number.Contains('?');
+        public bool ChecksumIsValid => CalculateChecksum() == 0; // TODO: normal method, return false if number block illegible
+        public bool NumberBlockIsIllegible { get; private set; } 
         public StatusEnum Status => DecideNumberBlockStatus();
 
-        public AccountNumberResult(string number)
+        public AccountNumber(string number)
         {
             if (number.Length != 9)
             {
@@ -15,6 +16,8 @@
             }
 
             Number = number;
+
+            CalculateResult();
         }
 
         private int CalculateChecksum()
@@ -24,10 +27,18 @@
                 .Sum() % 11;
         }
 
-        public StatusEnum DecideNumberBlockStatus()
+        private void CalculateResult()
         {
-            var possibleNumber = GeneratePossibleNumberCorrection();
-            var validNumber = possibleNumber.Where(n => new AccountNumberResult(n).ChecksumIsValid).ToList();
+            NumberBlockIsIllegible = Number.Contains('?');
+
+            // TODO: calculate checksum is valid (incl. numberblock ill)
+            // TODO: DecideNumberBlockStatus. If ILL, work out if there's another possibleNumber
+        }
+
+        private StatusEnum DecideNumberBlockStatus()
+        {
+            var possibleNumber = GeneratePossibleNumberCorrection(); // TODO: order is wrong (status happens first, if ILL, i should generate number correction then check possible number)
+            var validNumber = possibleNumber.Where(n => new AccountNumber(n).ChecksumIsValid).ToList();
 
             return (NumberBlockIsIllegible, ChecksumIsValid, validNumber.Count) switch
             {
@@ -37,11 +48,12 @@
                 (false, false, 1) => StatusEnum.Valid,
                 (false, false, > 1) => StatusEnum.AMB,
                 (false, false, 0) => StatusEnum.ERR,
-                _ => StatusEnum.Valid
+                _ => StatusEnum.Valid // TODO: make default case invalid? Add the enum
             };
         }
 
-        private List<string> GeneratePossibleNumberCorrection()
+        // TODO: find position of ? (iterate 0 - 9, swap ?), calculate checksum
+        private List<string> GeneratePossibleNumberCorrection() // TODO: don't do this if more than 1 ?
         {
             var possibleNumber = new List<string>();
 
@@ -80,7 +92,7 @@
             {
                 StatusEnum.Valid => Number,
                 StatusEnum.AMB => $"{Number} AMB [{string.Join(", ", GeneratePossibleNumberCorrection().Where(n => 
-                    new AccountNumberResult(n).ChecksumIsValid))}]",
+                    new AccountNumber(n).ChecksumIsValid))}]",
                 StatusEnum.ILL => $"{Number} ILL",
                 StatusEnum.ERR => $"{Number} ERR",
                 _ => Number

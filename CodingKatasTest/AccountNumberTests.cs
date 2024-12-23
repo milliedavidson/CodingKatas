@@ -3,14 +3,14 @@ using Xunit;
 
 namespace CodingKatasTest
 {
-    public class AccountNumberResultTests
+    public class AccountNumberTests
     {
         [Fact]
         public void Invalid_Length_Of_Account_Number_Result_Throws_Argument_Exception()
         {
             var invalidNumber = "12345678";
 
-            Assert.Throws<ArgumentException>(() => new AccountNumberResult(invalidNumber));
+            Assert.Throws<ArgumentException>(() => new AccountNumber(invalidNumber));
         }
 
         [Fact]
@@ -18,9 +18,9 @@ namespace CodingKatasTest
         {
             var validNumber = "123456789";
 
-            var accountNumberResult = new AccountNumberResult(validNumber);
+            var accountNumber = new AccountNumber(validNumber);
 
-            Assert.Equal(validNumber, accountNumberResult.Number);
+            Assert.Equal(validNumber, accountNumber.Number);
         }
 
         [Theory]
@@ -29,9 +29,9 @@ namespace CodingKatasTest
         [InlineData("457508000")]
         public void Valid_Checksum_Returns_True(string validChecksum)
         {
-            var accountNumberResult = new AccountNumberResult(validChecksum);
+            var accountNumber = new AccountNumber(validChecksum);
 
-            Assert.True(accountNumberResult.ChecksumIsValid);
+            Assert.True(accountNumber.ChecksumIsValid);
         }
 
         [Theory]
@@ -40,9 +40,9 @@ namespace CodingKatasTest
         [InlineData("664371495")]
         public void Invalid_Checksum_Returns_False(string invalidChecksum)
         {
-            var accountNumberResult = new AccountNumberResult(invalidChecksum);
+            var accountNumber = new AccountNumber(invalidChecksum);
 
-            Assert.False(accountNumberResult.ChecksumIsValid);
+            Assert.False(accountNumber.ChecksumIsValid);
         }
 
         [Fact]
@@ -50,9 +50,9 @@ namespace CodingKatasTest
         {
             var illegibleNumber = "12345678?";
 
-            var accountNumberResult = new AccountNumberResult(illegibleNumber);
+            var accountNumber = new AccountNumber(illegibleNumber);
 
-            Assert.True(accountNumberResult.NumberBlockIsIllegible);
+            Assert.True(accountNumber.NumberBlockIsIllegible);
         }
 
         [Fact]
@@ -60,9 +60,9 @@ namespace CodingKatasTest
         {
             var legibleNumber = "123456789"; // TODO: Convert these test numbers to constants?
 
-            var accountNumberResult = new AccountNumberResult(legibleNumber);
+            var accountNumber = new AccountNumber(legibleNumber);
 
-            Assert.False(accountNumberResult.NumberBlockIsIllegible);
+            Assert.False(accountNumber.NumberBlockIsIllegible);
         }
 
         [Fact]
@@ -70,9 +70,9 @@ namespace CodingKatasTest
         {
             var illegibleNumber = "12345678?";
 
-            var accountNumberResult = new AccountNumberResult(illegibleNumber);
+            var accountNumber = new AccountNumber(illegibleNumber);
 
-            Assert.Equal(StatusEnum.ILL, accountNumberResult.Status);
+            Assert.Equal(StatusEnum.ILL, accountNumber.Status);
         }
 
     }
