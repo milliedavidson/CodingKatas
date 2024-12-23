@@ -1,7 +1,7 @@
 ﻿using CodingKatas;
 using Xunit;
 
-namespace CodingKatasTest
+namespace CodingKatasTest.Helpers
 {
     public class NumberBlockTests
     {
@@ -46,7 +46,7 @@ namespace CodingKatasTest
             };
 
             var numberBlock = new NumberBlock(lines);
-            var accountNumber= numberBlock.GetAccountNumber();
+            var accountNumber = numberBlock.GetAccountNumber();
 
             Assert.Equal("123456789", accountNumber);
         }

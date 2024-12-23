@@ -1,7 +1,8 @@
 ﻿using CodingKatas;
+using CodingKatas.Enums;
 using Xunit;
 
-namespace CodingKatasTest
+namespace CodingKatasTest.Helpers
 {
     public class AccountNumberTests
     {
@@ -35,7 +36,7 @@ namespace CodingKatasTest
         }
 
         [Theory]
-        [InlineData ("987654321")]
+        [InlineData("987654321")]
         [InlineData("123456788")]
         [InlineData("664371495")]
         public void Invalid_Checksum_Returns_False(string invalidChecksum)

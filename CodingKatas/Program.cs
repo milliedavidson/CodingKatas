@@ -1,4 +1,6 @@
-﻿namespace CodingKatas
+﻿using CodingKatas.Helpers;
+
+namespace CodingKatas
 {
     internal class Program
     {

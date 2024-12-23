@@ -1,11 +1,13 @@
-﻿namespace CodingKatas
+﻿using CodingKatas.Enums;
+
+namespace CodingKatas.Helpers
 {
     public class AccountNumber
     {
         // TODO: Make into private sets
-        public string Number { get; } 
+        public string Number { get; }
         public bool ChecksumIsValid => CalculateChecksum() == 0; // TODO: normal method, return false if number block illegible
-        public bool NumberBlockIsIllegible { get; private set; } 
+        public bool NumberBlockIsIllegible { get; private set; }
         public StatusEnum Status => DecideNumberBlockStatus();
 
         public AccountNumber(string number)
@@ -91,7 +93,7 @@
             return Status switch
             {
                 StatusEnum.Valid => Number,
-                StatusEnum.AMB => $"{Number} AMB [{string.Join(", ", GeneratePossibleNumberCorrection().Where(n => 
+                StatusEnum.AMB => $"{Number} AMB [{string.Join(", ", GeneratePossibleNumberCorrection().Where(n =>
                     new AccountNumber(n).ChecksumIsValid))}]",
                 StatusEnum.ILL => $"{Number} ILL",
                 StatusEnum.ERR => $"{Number} ERR",

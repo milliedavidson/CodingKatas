@@ -1,4 +1,4 @@
-﻿namespace CodingKatas
+﻿namespace CodingKatas.Helpers
 {
     public static class GenerateInputFile
     {
@@ -56,7 +56,7 @@
                 }
             }
 
-            return [..ocrLines];
+            return [.. ocrLines];
         }
     }
 }

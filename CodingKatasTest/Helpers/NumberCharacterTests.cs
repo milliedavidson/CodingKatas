@@ -1,7 +1,7 @@
 ﻿using CodingKatas;
 using Xunit;
 
-namespace CodingKatasTest
+namespace CodingKatasTest.Helpers
 {
     public class NumberCharacterTests
     {

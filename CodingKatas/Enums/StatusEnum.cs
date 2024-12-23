@@ -1,4 +1,4 @@
-﻿namespace CodingKatas
+﻿namespace CodingKatas.Enums
 {
     public enum StatusEnum
     {
