@@ -1,4 +1,4 @@
-﻿using CodingKatas;
+﻿using CodingKatas.Helpers;
 using Xunit;
 
 namespace CodingKatasTest.Helpers

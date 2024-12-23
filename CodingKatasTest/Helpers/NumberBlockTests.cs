@@ -1,4 +1,4 @@
-﻿using CodingKatas;
+﻿using CodingKatas.Helpers;
 using Xunit;
 
 namespace CodingKatasTest.Helpers
@@ -49,40 +49,6 @@ namespace CodingKatasTest.Helpers
             var accountNumber = numberBlock.GetAccountNumber();
 
             Assert.Equal("123456789", accountNumber);
-        }
-
-        [Fact]
-        public void Valid_Account_Number_Returns_True()
-        {
-            var lines = new List<string>
-            {
-                "    _  _     _  _  _  _  _ ",
-                "  | _| _||_||_ |_   ||_||_|",
-                "  ||_  _|  | _||_|  ||_| _|",
-                "                           "
-            };
-
-            var numberBlock = new NumberBlock(lines);
-            var accountNumber = numberBlock.GetAccountNumber();
-
-            Assert.True(accountNumber);
-        }
-
-        [Fact]
-        public void Invalid_Account_Number_Returns_False()
-        {
-            var lines = new List<string>
-            {
-                "    _  _     _  _  _  _  _ ",
-                "  | _| _||_||_ |_   ||_|| |",
-                "  ||_  _|  | _||_|  ||_|| |",
-                "                           "
-            };
-
-            var numberBlock = new NumberBlock(lines);
-            var accountNumber = numberBlock.GetAccountNumber();
-
-            Assert.False(accountNumber);
         }
     }
 }
