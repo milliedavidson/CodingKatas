@@ -21,15 +21,7 @@
 
         public NumberCharacter(string characterString)
         {
-            if (characterString.Length != 12)
-            {
-                CharacterString = new string(' ', 12);
-            }
-
-            else
-            {
-                CharacterString = characterString;
-            }
+            CharacterString = characterString.Length != 12 ? new string(' ', 12) : characterString;
 
             CharacterString = characterString;
         }

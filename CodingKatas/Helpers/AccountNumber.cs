@@ -1,14 +1,15 @@
 ﻿using CodingKatas.Enums;
+using CodingKatas.Interfaces;
 
 namespace CodingKatas.Helpers
 {
-    public class AccountNumber
+    public class AccountNumber : IAccountNumber
     {
         // TODO: Make into private sets
         public string Number { get; }
         public bool ChecksumIsValid => CalculateChecksum() == 0; // TODO: normal method, return false if number block illegible
         public bool NumberBlockIsIllegible { get; private set; }
-        public StatusEnum Status => DecideNumberBlockStatus();
+        public StatusEnum Status => CalculateStatus(accountNumber);
 
         public AccountNumber(string number)
         {
@@ -22,39 +23,36 @@ namespace CodingKatas.Helpers
             CalculateResult();
         }
 
-        private int CalculateChecksum()
+        private bool IsIllegible(string accountNumber)
         {
-            return Number
-                .Select((c, i) => (Number.Length - i) * int.Parse(c.ToString()))
-                .Sum() % 11;
+            return accountNumber.Contains('?');
         }
 
-        private void CalculateResult()
+        private string CalculateStatus(string accountNumber)
         {
-            NumberBlockIsIllegible = Number.Contains('?');
-
-            // TODO: calculate checksum is valid (incl. numberblock ill)
-            // TODO: DecideNumberBlockStatus. If ILL, work out if there's another possibleNumber
-        }
-
-        private StatusEnum DecideNumberBlockStatus()
-        {
-            var possibleNumber = GeneratePossibleNumberCorrection(); // TODO: order is wrong (status happens first, if ILL, i should generate number correction then check possible number)
-            var validNumber = possibleNumber.Where(n => new AccountNumber(n).ChecksumIsValid).ToList();
-
-            return (NumberBlockIsIllegible, ChecksumIsValid, validNumber.Count) switch
+            if (IsIllegible(accountNumber))
             {
-                (true, _, 1) => StatusEnum.Valid,
-                (true, _, > 1) => StatusEnum.AMB,
-                (true, _, 0) => StatusEnum.ILL,
-                (false, false, 1) => StatusEnum.Valid,
-                (false, false, > 1) => StatusEnum.AMB,
-                (false, false, 0) => StatusEnum.ERR,
-                _ => StatusEnum.Valid // TODO: make default case invalid? Add the enum
-            };
+                return "ILL";
+            }
+
+            else
+            {
+                var possibleNumber = GeneratePossibleNumberCorrection(); // TODO: order is wrong (status happens first, if ILL, i should generate number correction then check possible number)
+                var validNumber = possibleNumber.Where(n => new AccountNumber(n).ChecksumIsValid).ToList();
+
+                return (NumberBlockIsIllegible, ChecksumIsValid, validNumber.Count) switch
+                {
+                    (true, _, 1) => StatusEnum.Valid,
+                    (true, _, > 1) => StatusEnum.AMB,
+                    (true, _, 0) => StatusEnum.ILL,
+                    (false, false, 1) => StatusEnum.Valid,
+                    (false, false, > 1) => StatusEnum.AMB,
+                    (false, false, 0) => StatusEnum.ERR,
+                    _ => StatusEnum.Valid // TODO: make default case invalid? Add the enum
+                };
+            }
         }
 
-        // TODO: find position of ? (iterate 0 - 9, swap ?), calculate checksum
         private List<string> GeneratePossibleNumberCorrection() // TODO: don't do this if more than 1 ?
         {
             var possibleNumber = new List<string>();
@@ -86,6 +84,47 @@ namespace CodingKatas.Helpers
             }
 
             return possibleNumber;
+        }
+        private string CorrectSingleError(string accountNumber)
+        {
+        }
+
+        private bool IsValidChecksum(string accountNumber)
+        {
+
+        }
+
+        public void CalculateResult()
+        {
+            var accountNumber = GetAccountNumber();
+            var status = CalculateStatus(accountNumber);
+
+            if (status == "ILL")
+            {
+                var possibleNumbers = GeneratePossibleNumberCorrection();
+            }
+
+            var isValid = IsValidChecksum(accountNumber);
+        }
+
+        private bool CalculateChecksum()
+        {
+            return Number
+                .Select((c, i) => (Number.Length - i) * int.Parse(c.ToString()))
+                .Sum() % 11;
+        }
+
+        // TODO: calculate checksum is valid (incl. numberblock ill)
+        // TODO: DecideNumberBlockStatus. If ILL, work out if there's another possibleNumber
+        // TODO: find position of ? (iterate 0 - 9, swap ?), calculate checksum
+        private string DecideStatus(string accountNumber)
+        {
+            if (IsIllegible(accountNumber))
+            {
+                return "ILL";
+            }
+
+            return !IsValidChecksum(accountNumber) ? "ERR" : "VALID";
         }
 
         public override string ToString()

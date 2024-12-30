@@ -15,7 +15,7 @@ namespace CodingKatasTest.Helpers
         [Fact]
         public void Incorrect_File_Format_Throws_Invalid_Operation_Exception()
         {
-            var readFileContents = new ReadFileContents(); // TODO: Finish
+            var readFileContents = new ReadFileContents(); // TODO: Finish tests
 
             ReadFileContents.ReadFileLines(
                 "Line 0 n/" +
