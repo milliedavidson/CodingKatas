@@ -1,7 +1,7 @@
 ﻿using Xunit;
 using CodingKatas.Services;
 
-namespace CodingKatasTest.Helpers
+namespace CodingKatasTests.Helpers
 {
     public class ReadFileContentsTests
     {

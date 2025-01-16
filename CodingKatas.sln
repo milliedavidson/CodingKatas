@@ -5,7 +5,7 @@ VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodingKatas", "CodingKatas\CodingKatas.csproj", "{0B0913E5-4B8E-4F3A-9D46-56879831E8CD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodingKatasTest", "CodingKatasTest\CodingKatasTest.csproj", "{CC0DA8EA-16FD-4BD9-ABA6-960C0273E206}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodingKatasTests", "CodingKatasTest\CodingKatasTests.csproj", "{CC0DA8EA-16FD-4BD9-ABA6-960C0273E206}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{73CD8FE9-CCDB-4A39-AF67-9F48A8F48F9D}"
 	ProjectSection(SolutionItems) = preProject

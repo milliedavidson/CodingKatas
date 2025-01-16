@@ -1,4 +1,4 @@
-﻿namespace CodingKatasTest.Services
+﻿namespace CodingKatasTests.Services
 {
     public class GenerateInputFileTests
     {

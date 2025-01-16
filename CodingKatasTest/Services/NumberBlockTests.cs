@@ -1,7 +1,7 @@
 ﻿using CodingKatas.Services;
 using Xunit;
 
-namespace CodingKatasTest.Helpers
+namespace CodingKatasTests.Helpers
 {
     public class NumberBlockTests
     {
