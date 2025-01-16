@@ -1,4 +1,4 @@
-﻿namespace CodingKatas.Helpers
+﻿namespace CodingKatas.Services
 {
     public class ReadFileContents
     {

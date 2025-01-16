@@ -1,4 +1,4 @@
-﻿using CodingKatas.Helpers;
+﻿using CodingKatas.Services;
 
 namespace CodingKatas
 {

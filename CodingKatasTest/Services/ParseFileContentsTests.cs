@@ -1,4 +1,4 @@
-﻿namespace CodingKatasTest.Helpers
+﻿namespace CodingKatasTest.Services
 {
     public class ParseFileContentsTests
     {

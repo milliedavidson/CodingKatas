@@ -1,5 +1,5 @@
 ﻿using CodingKatas.Enums;
-using CodingKatas.Helpers;
+using CodingKatas.Services;
 using Xunit;
 
 namespace CodingKatasTest.Helpers
