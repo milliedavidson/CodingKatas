@@ -21,8 +21,8 @@
             var lines = new List<string>();
 
             foreach (var accountNumber in accountNumbers)
-            {
-                lines.AddRange(ConvertToOcrFormat(accountNumber));
+            { 
+                lines.AddRange(ConvertToOcrFormat(accountNumber)); 
                 lines.Add("");
             }
 
